@@ -47,7 +47,7 @@ export default function MoodTrackerLayout() {
 
       {/* Footer stays at bottom but takes minimal space */}
       <footer className="text-center text-sm text-gray-500 mt-4 flex items-center justify-center gap-1 h-6">
-        version 1.0 and made with
+        version 1.0 made with
         <img src="/emojis/heart.png" alt="heart" className="w-4 h-4 inline-block" />
         by angelika
       </footer>
