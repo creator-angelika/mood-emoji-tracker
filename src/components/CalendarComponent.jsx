@@ -46,11 +46,6 @@ export default function CalendarComponent({ selectedDate, setSelectedDate, dateE
         })}
       </div>
 
-      {selectedDate && (
-        <p className="mt-4 text-center text-gray-700">
-          Select an emoji below to capture the vibe of May {selectedDate}
-        </p>
-      )}
     </div>
   );
 }
