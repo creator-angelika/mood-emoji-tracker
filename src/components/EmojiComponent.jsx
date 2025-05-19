@@ -11,7 +11,12 @@ const moods = [
   { name: "Neutral", image: "/emojis/neutral.png" },
 ];
 
-export default function EmojiComponent({ onSelectMood, selectedDate }) {
+const monthNames = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+export default function EmojiComponent({ onSelectMood, selectedDate, month }) {
   const [selectedMood, setSelectedMood] = useState(null);
 
   const handleClick = (moodName) => {
@@ -23,10 +28,19 @@ export default function EmojiComponent({ onSelectMood, selectedDate }) {
     onSelectMood(moodName);
   };
 
+  // Extract day from selectedDate (assumes format "YYYY-M-D" or just day string)
+  let day = selectedDate;
+  if (selectedDate && selectedDate.includes("-")) {
+    const parts = selectedDate.split("-");
+    day = parts[2];
+  }
+
+  const displayDate = selectedDate && month !== undefined ? `${day} ${monthNames[month]}` : "";
+
   return (
     <div className="w-full h-full p-12 flex flex-col items-center justify-center font-inter overflow-auto">
       <h2 className="text-4xl font-bold mb-12 text-center">
-        {selectedDate ? `Pick an emoji for May ${selectedDate}` : "Select a date first"}
+        {selectedDate ? `Pick an emoji for ${displayDate}` : "Select a date first"}
       </h2>
 
       <div className="grid grid-cols-4 gap-x-28 gap-y-20 -ml-8">

@@ -33,13 +33,27 @@ export default function MoodTrackerLayout() {
     }));
   };
 
+  // Extract month from selectedDate if available
+  let month = undefined;
+  if (selectedDate) {
+    // Parse date string as a Date object
+    const dateObj = new Date(selectedDate);
+    if (!isNaN(dateObj)) {
+      month = dateObj.getMonth(); // 0-based month index
+    }
+  }
+
   return (
     <div className="h-screen p-6 bg-gray-100 font-inter flex flex-col">
       {/* Main content fills available space */}
       <div className="flex flex-1 gap-4">
         {/* Left: Emoji component takes 3/5 */}
         <div className="flex-[0.6] rounded-3xl bg-white shadow-xl">
-          <EmojiComponent onSelectMood={assignMoodToDate} selectedDate={selectedDate} />
+          <EmojiComponent
+            onSelectMood={assignMoodToDate}
+            selectedDate={selectedDate}
+            month={month} // Pass month here!
+          />
         </div>
 
         {/* Right: Calendar takes full 2/5 */}
