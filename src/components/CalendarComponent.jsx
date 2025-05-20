@@ -54,31 +54,51 @@ export default function CalendarComponent({ selectedDate, setSelectedDate, dateE
   };
 
   return (
-    <div className="w-full px-4 py-4 font-inter">
+    <div className="w-full h-full px-4 py-4 font-inter">
+
       {/* Month and Year with navigation arrows */}
-      <div className="flex justify-center items-center gap-6 mb-6">
-        <button onClick={handlePrevMonth} className="p-2 rounded hover:bg-gray-200 transition">
-          <img src="/emojis/left-arrow.png" alt="Previous Month" className="w-12 h-12" />
+      <div className="relative w-full mb-6 md:mb-12 select-none">
+
+        <button
+          onClick={handlePrevMonth}
+          className="absolute left-0 top-1/2 -translate-y-1/2 p-1 md:p-1 rounded hover:bg-gray-200 transition z-10"
+          style={{ touchAction: "manipulation" }}
+          aria-label="Previous Month"
+        >
+          <img
+            src="/emojis/left-arrow.png"
+            alt="Previous Month"
+            className="w-6 h-6 md:w-12 md:h-12"
+          />
         </button>
 
-        <h2 className="text-3xl font-bold text-black select-none">
+        <h2 className="text-xl md:text-3xl font-bold text-black text-center mx-16 md:mx-20">
           {monthNames[month]} {year}
         </h2>
 
-        <button onClick={handleNextMonth} className="p-2 rounded hover:bg-gray-200 transition">
-          <img src="/emojis/right-arrow.png" alt="Next Month" className="w-12 h-12" />
+        <button
+          onClick={handleNextMonth}
+          className="absolute right-0 top-1/2 -translate-y-1/2 p-1 md:p-1 rounded hover:bg-gray-200 transition z-10"
+          style={{ touchAction: "manipulation" }}
+          aria-label="Next Month"
+        >
+          <img
+            src="/emojis/right-arrow.png"
+            alt="Next Month"
+            className="w-6 h-6 md:w-12 md:h-12"
+          />
         </button>
       </div>
 
       {/* Days of the week */}
-      <div className="grid grid-cols-7 text-center mb-4 text-gray-500 font-medium text-sm">
+      <div className="grid grid-cols-7 text-center mb-4 md:mb-8 text-gray-500 font-medium text-xs md:text-sm">
         {daysOfWeek.map((day, idx) => (
           <div key={idx}>{day}</div>
         ))}
       </div>
 
       {/* Calendar Grid */}
-      <div className="grid gap-3 grid-cols-7">
+      <div className="grid gap-x-1 gap-y-6 md:gap-x-3 md:gap-y-5 grid-cols-7">
         {[...Array(adjustedFirstWeekday)].map((_, idx) => (
           <div key={`pad-${idx}`} />
         ))}
@@ -94,18 +114,19 @@ export default function CalendarComponent({ selectedDate, setSelectedDate, dateE
               onClick={() => setSelectedDate(dateKey)}
               className={`
                 aspect-square rounded-full flex flex-col items-center justify-center
-                text-sm font-medium
+                text-xs md:text-sm font-medium
                 ${isSelected ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-200"}
                 transition-colors duration-200
                 focus:outline-none
               `}
+              style={{ minWidth: "0" }} // prevent flex-grow weirdness on mobile if needed
             >
               <span>{day}</span>
               {assignedMood && (
                 <img
                   src={moods.find((m) => m.name === assignedMood)?.image}
                   alt={assignedMood}
-                  className="w-6 h-6 mt-1"
+                  className="w-4 h-4 md:w-6 md:h-6 mt-1"
                 />
               )}
             </button>
