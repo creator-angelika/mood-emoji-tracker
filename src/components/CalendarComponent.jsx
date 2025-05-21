@@ -127,7 +127,7 @@ export default function CalendarComponent({ selectedDate, setSelectedDate, dateE
                 <img
                   src={moods.find((m) => m.name === assignedMood)?.image}
                   alt={assignedMood}
-                  className="w-4 h-4 md:w-6 md:h-6 mt-1"
+                  className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-6 lg:h-6 mt-1"
                 />
               )}
             </button>
