@@ -42,9 +42,9 @@ export default function MoodTrackerLayout() {
   return (
     <div className="h-screen p-6 bg-gray-100 font-inter flex flex-col">
       {/* Main content fills available space */}
-      <div className="flex flex-1 gap-4 flex-col-reverse md:flex-row">
-        {/* Left: Emoji component takes 3/5 */}
-        <div className="md:flex-[0.6] w-full rounded-3xl bg-white shadow-xl">
+      <div className="flex flex-1 gap-4 flex-col lg:flex-row">
+        {/* Emoji component */}
+        <div className="lg:flex-[0.6] w-full rounded-3xl bg-white shadow-xl order-2 lg:order-1">
           <EmojiComponent
             onSelectMood={assignMoodToDate}
             selectedDate={selectedDate}
@@ -52,8 +52,8 @@ export default function MoodTrackerLayout() {
           />
         </div>
 
-        {/* Right: Calendar takes 2/5 */}
-        <div className="md:flex-[0.4] w-full flex flex-col gap-6">
+        {/* Calendar component */}
+        <div className="lg:flex-[0.4] w-full flex flex-col gap-6 order-1 lg:order-2">
           <div className="flex-[1.2] min-h-[60vh] shadow-xl flex items-center justify-center bg-white rounded-2xl cursor-pointer select-none">
             <CalendarComponent
               selectedDate={selectedDate}

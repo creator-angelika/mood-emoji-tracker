@@ -115,6 +115,7 @@ export default function CalendarComponent({ selectedDate, setSelectedDate, dateE
               className={`
                 aspect-square rounded-full flex flex-col items-center justify-center
                 text-xs md:text-sm font-medium
+                
                 ${isSelected ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-blue-200"}
                 transition-colors duration-200
                 focus:outline-none
